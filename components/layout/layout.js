@@ -22,7 +22,9 @@ export default function Layout({ children }) {
         'p-input-filled': inputStyle === 'filled',
         'p-ripple-disabled': ripple === false,
         'layout-dark': darkMode,
-        'layout-light': !darkMode
+        'layout-light': !darkMode,
+        'dark': darkMode,
+        'light': !darkMode
     });
 
     const toggleDarkMode = () => {

@@ -2,9 +2,11 @@ import { GTagManager } from '@/components/analytics/analytics';
 import AppContentContext from '@/components/layout/appcontentcontext';
 import Layout from '@/components/layout/layout';
 import { PrimeReactProvider } from '@/components/lib/api/PrimeReactContext';
+import { usePassThrough } from '@/components/lib/passthrough/index'
+import Tailwind from '@/components/lib/passthrough/tailwind';
 import { switchTheme } from '@/components/utils/utils';
 import '@docsearch/css';
-import 'primeflex/primeflex.css';
+//import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import { useState } from 'react';
 import '../styles/demo/demo.scss';
@@ -51,13 +53,11 @@ export default function MyApp({ Component, pageProps }) {
         }
     };
 
-    const primereactConfig = {
-        ripple: true
-    };
+    const CustomTailwind = usePassThrough(Tailwind)
 
     return (
         <AppContentContext.Provider value={appState}>
-            <PrimeReactProvider value={primereactConfig}>
+            <PrimeReactProvider value={{unstyled: true, pt:CustomTailwind}}>
                 {isProduction && <GTagManager />}
                 <AppContent component={Component} pageProps={pageProps} />
             </PrimeReactProvider>
